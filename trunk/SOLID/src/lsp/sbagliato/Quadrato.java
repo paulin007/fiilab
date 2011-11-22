@@ -7,8 +7,8 @@ public class Quadrato extends Rettangolo{
 	}
 	
 	public void setL(float l){
-		setW(l);
-		setH(l);
+		super.setW(l);
+		super.setH(l);
 	}
 	
 	@Override
