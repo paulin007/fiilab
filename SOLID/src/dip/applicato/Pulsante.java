@@ -2,12 +2,12 @@ package dip.applicato;
 
 public class Pulsante implements IPulsante {
 	
-	private IPulsanteCLient lampada;
+	private IPulsanteCLient pulsanteClient;
 	private boolean accesa=false;
 	
-	public Pulsante(IPulsanteCLient lampada) {
+	public Pulsante(IPulsanteCLient pulsanteClient) {
 		super();
-		this.lampada = lampada;
+		this.pulsanteClient = pulsanteClient;
 	}
 
 	/* (non-Javadoc)
@@ -16,9 +16,9 @@ public class Pulsante implements IPulsante {
 	@Override
 	public void schiaccia(){
 		if(accesa){
-			lampada.spegni();
+			pulsanteClient.spegni();
 		}else{
-			lampada.accendi();
+			pulsanteClient.accendi();
 		}
 		accesa=!accesa;
 	}
