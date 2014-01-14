@@ -14,43 +14,37 @@ public class GeneratoreDiRapportiSintetici {
 	public ArrayList<String> generaRapportoSintetico(
 			ArrayList<String> rapportoCompleto){
 		
-		ArrayList<String> risultato=new ArrayList<String>();
+		ArrayList<Log> risultato=new ArrayList<Log>();
 		
 		for (String rapporto : rapportoCompleto) {
 			
 			//"Giuseppe Verdi 4 Testing 01-03-2014",
 			Log log = interprete.creaLogDaRapportoCompleto(rapporto);
 			
-			boolean trovato = cercaRisultato(risultato, log);
-			
-			if(!trovato){
-				risultato.add(interprete.creaRapportoSinteticoDaLog(log));
+			if(!cercaRisultato(risultato, log)){
+				risultato.add(log);
 			}
+		}
+
+		ArrayList<String> risultatoStringhe=new ArrayList<String>();
+		for (Log log : risultato) {
+			risultatoStringhe.add(interprete.creaRapportoSinteticoDaLog(log));
 		}
 		
-		return risultato;
+		return risultatoStringhe;
 	}
 	
-	private boolean cercaRisultato(ArrayList<String> risultato,Log log) {
-		boolean trovato = false;
+	private boolean cercaRisultato(ArrayList<Log> risultato,Log log) {
 		for (int i = 0; i < risultato.size(); i++) {
 			
-			String string=risultato.get(i);
-			Log log2 = interprete.creaLogDaRapportoSintetico(string);
+			Log log2 = risultato.get(i);
 			
-			boolean stessiDati = log.stessiDati(log2);
-			
-			if(stessiDati){
-				trovato=true;
-				risultato.remove(i);
-				int sommaOre=Integer.parseInt(log.getOre())+
-					Integer.parseInt(log2.getOre());
-				log2.setOre(""+sommaOre);
-				risultato.add(interprete.creaRapportoSinteticoDaLog(log2));
-				i=risultato.size();
+			if(log.stessiDati(log2)){
+				log2.setOre(""+log.sommaOre(log2));
+				return true;
 			}
 		}
-		return trovato;
+		return false;
 	}
 
 }

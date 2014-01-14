@@ -54,6 +54,11 @@ public class Log {
 			getCompito().equalsIgnoreCase(log2.getCompito());
 		return stessiDati;
 	}
+
+	int sommaOre(Log log2) {
+		return Integer.parseInt(getOre())+
+			Integer.parseInt(log2.getOre());
+	}
 	
 	
 }
