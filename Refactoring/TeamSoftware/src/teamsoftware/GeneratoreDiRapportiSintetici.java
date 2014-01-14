@@ -24,29 +24,8 @@ public class GeneratoreDiRapportiSintetici {
 			
 			boolean trovato = false;
 			
-			for (int i = 0; i < risultato.size(); i++) {
-				
-				StringTokenizer tokenizer2=new StringTokenizer(risultato.get(i));
-				//"Giuseppe Verdi 12 Testing 12",
-				
-				String nome2=tokenizer2.nextToken();
-				String cognome2=tokenizer2.nextToken();
-				String ore2=tokenizer2.nextToken();
-				String compito2=tokenizer2.nextToken();
-				
-				if(nome.equalsIgnoreCase(nome2)){
-					if(cognome.equalsIgnoreCase(cognome2)){
-						if(compito.equalsIgnoreCase(compito2)){
-							trovato=true;
-							risultato.remove(i);
-							int sommaOre=Integer.parseInt(ore)+Integer.parseInt(ore2);
-							risultato.add(nome+" "+cognome+" "+
-									sommaOre+" "+compito+" "+sommaOre);
-							i=risultato.size();
-						}
-					}
-				}
-			}
+			trovato = cercaRisultato(risultato, nome, cognome, ore, compito,
+					trovato);
 			
 			if(!trovato){
 				risultato.add(nome+" "+cognome+" "+ore+" "+compito+" "+ore);
@@ -54,6 +33,34 @@ public class GeneratoreDiRapportiSintetici {
 		}
 		
 		return risultato;
+	}
+
+	private boolean cercaRisultato(ArrayList<String> risultato, String nome,
+			String cognome, String ore, String compito, boolean trovato) {
+		for (int i = 0; i < risultato.size(); i++) {
+			
+			StringTokenizer tokenizer2=new StringTokenizer(risultato.get(i));
+			//"Giuseppe Verdi 12 Testing 12",
+			
+			String nome2=tokenizer2.nextToken();
+			String cognome2=tokenizer2.nextToken();
+			String ore2=tokenizer2.nextToken();
+			String compito2=tokenizer2.nextToken();
+			
+			if(nome.equalsIgnoreCase(nome2)){
+				if(cognome.equalsIgnoreCase(cognome2)){
+					if(compito.equalsIgnoreCase(compito2)){
+						trovato=true;
+						risultato.remove(i);
+						int sommaOre=Integer.parseInt(ore)+Integer.parseInt(ore2);
+						risultato.add(nome+" "+cognome+" "+
+								sommaOre+" "+compito+" "+sommaOre);
+						i=risultato.size();
+					}
+				}
+			}
+		}
+		return trovato;
 	}
 
 }
