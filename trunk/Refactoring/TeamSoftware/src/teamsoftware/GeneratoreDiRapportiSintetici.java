@@ -8,7 +8,6 @@ public class GeneratoreDiRapportiSintetici {
 	public ArrayList<String> generaRapportoSintetico(
 			ArrayList<String> rapportoCompleto){
 		
-
 		ArrayList<String> risultato=new ArrayList<String>();
 		
 		for (String rapporto : rapportoCompleto) {
@@ -22,9 +21,10 @@ public class GeneratoreDiRapportiSintetici {
 			String compito=tokenizer.nextToken();
 			String data=tokenizer.nextToken();
 			
-			boolean trovato = false;
+			Log log=new Log(nome, cognome, ore, compito);
 			
-			trovato = cercaRisultato(risultato, nome, cognome, ore, compito,
+			boolean trovato = false;
+			trovato = cercaRisultato(risultato, log,
 					trovato);
 			
 			if(!trovato){
@@ -35,8 +35,8 @@ public class GeneratoreDiRapportiSintetici {
 		return risultato;
 	}
 
-	private boolean cercaRisultato(ArrayList<String> risultato, String nome,
-			String cognome, String ore, String compito, boolean trovato) {
+	private boolean cercaRisultato(ArrayList<String> risultato,
+			Log log, boolean trovato) {
 		for (int i = 0; i < risultato.size(); i++) {
 			
 			StringTokenizer tokenizer2=new StringTokenizer(risultato.get(i));
@@ -47,14 +47,14 @@ public class GeneratoreDiRapportiSintetici {
 			String ore2=tokenizer2.nextToken();
 			String compito2=tokenizer2.nextToken();
 			
-			if(nome.equalsIgnoreCase(nome2)){
-				if(cognome.equalsIgnoreCase(cognome2)){
-					if(compito.equalsIgnoreCase(compito2)){
+			if(log.getNome().equalsIgnoreCase(nome2)){
+				if(log.getCognome().equalsIgnoreCase(cognome2)){
+					if(log.getCompito().equalsIgnoreCase(compito2)){
 						trovato=true;
 						risultato.remove(i);
-						int sommaOre=Integer.parseInt(ore)+Integer.parseInt(ore2);
-						risultato.add(nome+" "+cognome+" "+
-								sommaOre+" "+compito+" "+sommaOre);
+						int sommaOre=Integer.parseInt(log.getOre())+Integer.parseInt(ore2);
+						risultato.add(log.getNome()+" "+log.getCognome()+" "+
+								sommaOre+" "+log.getCompito()+" "+sommaOre);
 						i=risultato.size();
 					}
 				}
@@ -62,5 +62,4 @@ public class GeneratoreDiRapportiSintetici {
 		}
 		return trovato;
 	}
-
 }
