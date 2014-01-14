@@ -1,5 +1,10 @@
 package teamsoftware;
 
+/**
+ * Un Log dei Rapporti
+ * 
+ * @author Alessandro
+ */
 public class Log {
 
 	private String nome;
@@ -9,7 +14,7 @@ public class Log {
 	
 	public Log(String nome, String cognome, String ore, String compito) {
 		super();
-		setNome(cognome);
+		setNome(nome);
 		setCognome(cognome);
 		setOre(ore);
 		setCompito(compito);
@@ -47,7 +52,12 @@ public class Log {
 		this.compito = compito;
 	}
 
-	boolean stessiDati(Log log2) {
+	/**
+	 * Verifica che tutti i parametri abbiano gli stessi valori, escluso il numero delle ore.
+	 * @param log2 un altro log
+	 * @return true, se nome, cognome e compito coincidono. 
+	 */
+	public boolean stessiDati(Log log2) {
 		boolean stessiDati =  
 			getNome().equalsIgnoreCase(log2.getNome()) &&
 			getCognome().equalsIgnoreCase(log2.getCognome()) &&
@@ -55,7 +65,12 @@ public class Log {
 		return stessiDati;
 	}
 
-	int sommaOre(Log log2) {
+	/**
+	 * Calcola la somma delle ore di questo log con quelle di un altro log
+	 * @param log2 un altro log
+	 * @return la somma
+	 */
+	public int sommaOre(Log log2) {
 		return ore+log2.ore;
 	}
 	
