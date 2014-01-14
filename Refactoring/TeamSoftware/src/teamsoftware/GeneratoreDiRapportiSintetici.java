@@ -38,18 +38,16 @@ public class GeneratoreDiRapportiSintetici {
 			String string=risultato.get(i);
 			Log log2 = interprete.creaLogDaRapportoSintetico(string);
 			
-			if(log.getNome().equalsIgnoreCase(log2.getNome())){
-				if(log.getCognome().equalsIgnoreCase(log2.getCognome())){
-					if(log.getCompito().equalsIgnoreCase(log2.getCompito())){
-						trovato=true;
-						risultato.remove(i);
-						int sommaOre=Integer.parseInt(log.getOre())+
-							Integer.parseInt(log2.getOre());
-						log2.setOre(""+sommaOre);
-						risultato.add(interprete.creaRapportoSinteticoDaLog(log2));
-						i=risultato.size();
-					}
-				}
+			boolean stessiDati = log.stessiDati(log2);
+			
+			if(stessiDati){
+				trovato=true;
+				risultato.remove(i);
+				int sommaOre=Integer.parseInt(log.getOre())+
+					Integer.parseInt(log2.getOre());
+				log2.setOre(""+sommaOre);
+				risultato.add(interprete.creaRapportoSinteticoDaLog(log2));
+				i=risultato.size();
 			}
 		}
 		return trovato;

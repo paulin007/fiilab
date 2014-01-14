@@ -46,6 +46,14 @@ public class Log {
 	public void setCompito(String compito) {
 		this.compito = compito;
 	}
+
+	boolean stessiDati(Log log2) {
+		boolean stessiDati =  
+			getNome().equalsIgnoreCase(log2.getNome()) &&
+			getCognome().equalsIgnoreCase(log2.getCognome()) &&
+			getCompito().equalsIgnoreCase(log2.getCompito());
+		return stessiDati;
+	}
 	
 	
 }
