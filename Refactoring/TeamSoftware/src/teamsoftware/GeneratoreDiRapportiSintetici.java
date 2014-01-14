@@ -2,6 +2,10 @@ package teamsoftware;
 
 import java.util.ArrayList;
 
+/**
+ * Classe dedicata alla generazione di Rapporti Sintetici da Rapporti Completi
+ * @author Alessandro
+ */
 public class GeneratoreDiRapportiSintetici {
 	
 	private InterpreteRapporti interprete;
@@ -11,6 +15,11 @@ public class GeneratoreDiRapportiSintetici {
 		this.interprete = interprete;
 	}
 
+	/**
+	 * Generazione Rapporti Sintetici da Rapporti Completi
+	 * @param rapportoCompleto una lista di Stringhe di Rapporto Completo
+	 * @return una lista di Stringhe di Rapporto Sintetico
+	 */
 	public ArrayList<String> generaRapportoSintetico(
 			ArrayList<String> rapportoCompleto){
 		
