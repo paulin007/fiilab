@@ -4,15 +4,15 @@ public class Log {
 
 	private String nome;
 	private String cognome;
-	private String ore;
+	private int ore;
 	private String compito;
 	
 	public Log(String nome, String cognome, String ore, String compito) {
 		super();
-		this.nome = nome;
-		this.cognome = cognome;
-		this.ore = ore;
-		this.compito = compito;
+		setNome(cognome);
+		setCognome(cognome);
+		setOre(ore);
+		setCompito(compito);
 	}
 
 	public String getNome() {
@@ -32,11 +32,11 @@ public class Log {
 	}
 
 	public String getOre() {
-		return ore;
+		return ore+"";
 	}
 
 	public void setOre(String ore) {
-		this.ore = ore;
+		this.ore = Integer.parseInt(ore);
 	}
 
 	public String getCompito() {
@@ -56,8 +56,7 @@ public class Log {
 	}
 
 	int sommaOre(Log log2) {
-		return Integer.parseInt(getOre())+
-			Integer.parseInt(log2.getOre());
+		return ore+log2.ore;
 	}
 	
 	
