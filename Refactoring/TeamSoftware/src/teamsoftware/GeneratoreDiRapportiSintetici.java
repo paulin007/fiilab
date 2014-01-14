@@ -4,7 +4,12 @@ import java.util.ArrayList;
 
 public class GeneratoreDiRapportiSintetici {
 	
-	private InterpreteRapportiDiTest interprete=new InterpreteRapportiDiTest();
+	private InterpreteRapporti interprete;
+
+	public GeneratoreDiRapportiSintetici(InterpreteRapporti interprete) {
+		super();
+		this.interprete = interprete;
+	}
 
 	public ArrayList<String> generaRapportoSintetico(
 			ArrayList<String> rapportoCompleto){

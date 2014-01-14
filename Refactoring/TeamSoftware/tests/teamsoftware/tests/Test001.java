@@ -27,7 +27,8 @@ public class Test001{
 		);
 		
 		GeneratoreDiRapportiSintetici generatore=
-			new GeneratoreDiRapportiSintetici();
+			new GeneratoreDiRapportiSintetici(
+					new InterpreteRapportiDiTest());
 		
 		ArrayList<String> risultato=generatore.
 			generaRapportoSintetico(rapportoSintentico);
@@ -78,7 +79,8 @@ public class Test001{
 		);
 		
 		GeneratoreDiRapportiSintetici generatore=
-			new GeneratoreDiRapportiSintetici();
+			new GeneratoreDiRapportiSintetici(
+					new InterpreteRapportiDiTest());
 		
 		ArrayList<String> risultato=generatore.
 			generaRapportoSintetico(rapportoSintentico);
@@ -129,7 +131,8 @@ public class Test001{
 		);
 		
 		GeneratoreDiRapportiSintetici generatore=
-			new GeneratoreDiRapportiSintetici();
+			new GeneratoreDiRapportiSintetici(
+					new InterpreteRapportiDiTest());
 		
 		ArrayList<String> risultato=generatore.
 			generaRapportoSintetico(rapportoSintentico);
