@@ -2,6 +2,8 @@ package scarpe;
 
 import java.awt.GridLayout;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -13,6 +15,10 @@ import javax.swing.JPanel;
 public class Scarpe {
 
 	public static final String FILENAME = "stock.txt";
+	
+	public static int number;
+	public static int size;
+	public static String model;
 	
 	public static void main(String[] args) {
 
@@ -29,14 +35,32 @@ public class Scarpe {
 			
 			fieldsPanel.setLayout(new GridLayout(3, 1));
 			
-			TextField fieldNumber=new TextField();
+			final TextField fieldNumber=new TextField();
 			fieldsPanel.add(fieldNumber);
-
-			TextField fieldSize=new TextField();
+			fieldNumber.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Scarpe.number=Integer.parseInt(fieldNumber.getText());
+				}
+			});
+			
+			final TextField fieldSize=new TextField();
 			fieldsPanel.add(fieldSize);
+			fieldSize.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Scarpe.size=Integer.parseInt(fieldSize.getText());
+				}
+			});
 
-			TextField fieldModel=new TextField();
+			final TextField fieldModel=new TextField();
 			fieldsPanel.add(fieldModel);
+			fieldModel.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Scarpe.model=fieldModel.getText();
+				}
+			});
 		
 		JPanel resultsPanel=new JPanel();
 		
