@@ -5,6 +5,7 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -66,9 +67,26 @@ public class Scarpe {
 		
 			resultsPanel.setLayout(new GridLayout(2, 1));
 			
-			JLabel resultLabel=new JLabel();
+			final JLabel resultLabel=new JLabel();
 			
 			JButton insertButton=new JButton("Insert");
+			insertButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					String text=Scarpe.number+" "+Scarpe.model+"("
+						+Scarpe.size+")";
+					
+					resultLabel.setText(text);
+					
+					try {
+						FileWriter writer=new FileWriter(new File(FILENAME),true);
+						writer.append(text);
+						writer.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			});
 			
 			resultsPanel.add(insertButton);
 			resultsPanel.add(resultLabel);
