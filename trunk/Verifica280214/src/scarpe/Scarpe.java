@@ -4,9 +4,6 @@ import java.awt.GridLayout;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,16 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Scarpe {
-
-	public static final String FILENAME = "stock.txt";
-	
-	public static int number;
-	public static int size;
-	public static String model;
 	
 	public static void main(String[] args) {
 
 		final GestoreFile gestore=new GestoreFile();
+		final ScarpeModel model=new ScarpeModel();
 		
 		gestore.inizializzaFile();
 		
@@ -36,7 +28,7 @@ public class Scarpe {
 			fieldNumber.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Scarpe.number=Integer.parseInt(fieldNumber.getText());
+					model.setNumber(fieldNumber.getText());
 				}
 			});
 			
@@ -45,7 +37,7 @@ public class Scarpe {
 			fieldSize.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Scarpe.size=Integer.parseInt(fieldSize.getText());
+					model.setSize(fieldSize.getText());
 				}
 			});
 
@@ -54,7 +46,7 @@ public class Scarpe {
 			fieldModel.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Scarpe.model=fieldModel.getText();
+					model.setModel(fieldModel.getText());
 				}
 			});
 		
@@ -68,8 +60,7 @@ public class Scarpe {
 			insertButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					String text=Scarpe.number+" "+Scarpe.model+"("
-						+Scarpe.size+")";
+					String text=model.getStockTest();
 					
 					resultLabel.setText(text);
 					
