@@ -1,6 +1,8 @@
 package scarpe;
 
-public class ScarpeModel {
+import java.util.Observable;
+
+public class ScarpeModel extends Observable{
 
 	private int number;
 	private int size;
@@ -22,5 +24,10 @@ public class ScarpeModel {
 		String stock=this.number+" "+this.model+"("
 			+this.size+")";
 		return stock;
+	}
+	
+	public void update(){
+		setChanged();
+		notifyObservers();
 	}
 }
