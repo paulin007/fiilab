@@ -3,10 +3,25 @@ package scarpe;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
-public class GestoreFile {
+public class GestoreFile implements Observer{
 	
 	public static final String FILENAME = "stock.txt";
+
+	private ScarpeModel model;
+	
+	public GestoreFile(ScarpeModel model) {
+		super();
+		this.model = model;
+		model.addObserver(this);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		this.aggiungiStock(model.getStockTest());
+	}
 	
 	public void inizializzaFile(){
 		try {
