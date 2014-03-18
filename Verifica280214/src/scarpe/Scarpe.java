@@ -23,14 +23,9 @@ public class Scarpe {
 	
 	public static void main(String[] args) {
 
-		try {
-			File file=new File(FILENAME);
-			if(!file.exists()){
-				file.createNewFile();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		final GestoreFile gestore=new GestoreFile();
+		
+		gestore.inizializzaFile();
 		
 		JPanel fieldsPanel=new JPanel();
 			
@@ -78,13 +73,7 @@ public class Scarpe {
 					
 					resultLabel.setText(text);
 					
-					try {
-						FileWriter writer=new FileWriter(new File(FILENAME),true);
-						writer.append(text);
-						writer.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					gestore.aggiungiStock(text);
 				}
 			});
 			
