@@ -1,0 +1,1 @@
+gcc -o libexample.so -shared -fPIC -I./include example02_Randomizer.cpp Randomizer.cpp
