@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title> Esempio 01 </title>
+		<meta charset="UTF-8" />
+		
+		<!-- 
+			1) sul tag a non funziona ne width:100%; ne margin:0px;
+			2) <ul type="none"> andrebbe piuttosto fatto con i css
+		-->
+		<style>
+		li{
+			margin:3px;
+		}
+		a.button{
+			width:100%;
+			margin:0px;
+			border:1px solid black;
+			border-radius:3px;
+			background-color:#ddd;
+			text-decoration:none;
+		}
+		a:hover{
+			background-color:#888;
+		}
+		</style>
+		<script type="text/javascript">
+			var variable1;
+			function hide(id){
+				document.getElementById(id).style.display="inline";
+				//document.getElementById(id).style.display="none";
+			}
+		</script>	 
+	</head>
+	<body>
+		<table style="width:100%">
+			<tr>
+				<td style="border:1px solid black" colspan="2">
+					<h1>Titolo</h1>
+				</td>	
+			</tr>
+			<tr>
+				<td style="width:200px;border:1px solid black">
+					<ul style="list-style-type:none">
+						<li>Pagina 1</li>
+						<li><a class="button" href="pagina02.html">Pagina 2</a></li>
+						<li><a class="button" href="pagina03.html">Pagina 3</a></li>
+					</ul>
+				</td>	
+				<td style="border:1px solid black">
+					<h1>Pagina 1</h1>
+					
+					<h2>Titolo 1</h2> 
+					
+					<div onclick="hide('contenuto1')" style="background-color:#999;border:1px solid black;font-size:10px;width:50px">
+						Nascondi
+					</div>
+					
+					<div id="contenuto1" style="display:none;border:1px solid black;">
+						Contenuto <span style="color:#444;font-weight:bold;">Numero</span> 1
+					</div>
+					
+					<h2>Titolo 2</h2>
+					
+					<div style="border:1px solid black;">
+						Contenuto Numero 2
+					</div>
+				</td>	
+			</tr>
+		</table>
+	
+	</body>
+</html>
