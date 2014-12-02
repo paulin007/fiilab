@@ -1,14 +1,10 @@
 package tests;
 
-import java.awt.Color;
-
 import javax.swing.JFrame;
 
-import drawings.CircleTree;
-import drawings.DrawingsPanel;
 import drawings.CurveDrawable;
+import drawings.DrawingsPanel;
 import drawings.FlowerModel;
-import drawings.TriangleTree;
 
 /**
  * Lancia una Finestra e ci Disegna
