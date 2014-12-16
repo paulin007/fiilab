@@ -2,6 +2,7 @@ package teamsoftware;
 
 import java.util.ArrayList;
 
+
 /**
  * Classe dedicata alla generazione di Rapporti Sintetici da Rapporti Completi
  * @author Alessandro
