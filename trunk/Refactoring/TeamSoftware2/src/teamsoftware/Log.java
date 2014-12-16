@@ -46,6 +46,12 @@ public class Log {
 	public String getOre() {
 		return ore;
 	}
+
+	int getSommaOre(Log log2) {
+		int sommaOre = Integer.parseInt(getOre())+
+			Integer.parseInt(log2.getOre());
+		return sommaOre;
+	}
 	
 	
 }
