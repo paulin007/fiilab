@@ -12,26 +12,38 @@ public class GeneratoreDiRapportiSintetici {
 		
 		for (String rapporto : rapportoCompleto) {
 			
-			StringTokenizer tokenizer=new StringTokenizer(rapporto);
-			
-			String nome=tokenizer.nextToken();
-			String cognome=tokenizer.nextToken();
-			String ore=tokenizer.nextToken();
-			String compito=tokenizer.nextToken();
-			String data=tokenizer.nextToken();
-			
-			Log log=new Log(nome, cognome, compito, ore);
+			Log log = creaLogDaRapportoCompleto(rapporto);
 			
 			boolean trovato = cercaRisultato(
 					risultato,log);
 			
 			if(!trovato){
-				risultato.add(nome+" "+cognome+" "+
-						ore+" "+compito+" "+ore);
+				risultato.add(generaRapportoSinteticoDaLog(log));
 			}
 		}
 		
 		return risultato;
+	}
+
+	private String generaRapportoSinteticoDaLog(Log log) {
+		return log.getNome()+" "+
+				log.getCognome()+" "+
+				log.getOre()+" "+
+				log.getCompito()+" "+
+				log.getOre();
+	}
+
+	private Log creaLogDaRapportoCompleto(String rapporto) {
+		StringTokenizer tokenizer=new StringTokenizer(rapporto);
+		
+		String nome=tokenizer.nextToken();
+		String cognome=tokenizer.nextToken();
+		String ore=tokenizer.nextToken();
+		String compito=tokenizer.nextToken();
+		String data=tokenizer.nextToken();
+		
+		Log log=new Log(nome, cognome, compito, ore);
+		return log;
 	}
 
 	private boolean cercaRisultato(ArrayList<String> risultato, 
@@ -40,20 +52,15 @@ public class GeneratoreDiRapportiSintetici {
 		boolean trovato = false;
 		for (int i = 0; i < risultato.size(); i++) {
 			
-			StringTokenizer tokenizer2 =new StringTokenizer(risultato.get(i));
-
-			String nome2=tokenizer2.nextToken();
-			String cognome2=tokenizer2.nextToken();
-			String ore2=tokenizer2.nextToken();
-			String compito2=tokenizer2.nextToken();
+			Log log2 = generaLogDaRapportoSintetico(risultato, i);
 			
-			if(log.getNome().equalsIgnoreCase(nome2)){
-				if(log.getCognome().equalsIgnoreCase(cognome2)){
-					if(log.getCompito().equalsIgnoreCase(compito2)){
+			if(log.getNome().equalsIgnoreCase(log2.getNome())){
+				if(log.getCognome().equalsIgnoreCase(log2.getCognome())){
+					if(log.getCompito().equalsIgnoreCase(log2.getCompito())){
 						trovato = true;
 						risultato.remove(i);
 						int sommaOre = Integer.parseInt(log.getOre())+
-							Integer.parseInt(ore2);
+							Integer.parseInt(log2.getOre());
 						risultato.add(log.getNome()+" "+log.getCognome()+" "+
 								sommaOre+" "+log.getCompito()+" "+sommaOre);
 						i=risultato.size();
@@ -62,6 +69,18 @@ public class GeneratoreDiRapportiSintetici {
 			}
 		}
 		return trovato;
+	}
+
+	private Log generaLogDaRapportoSintetico(ArrayList<String> risultato, int i) {
+		StringTokenizer tokenizer2 =new StringTokenizer(risultato.get(i));
+
+		String nome2=tokenizer2.nextToken();
+		String cognome2=tokenizer2.nextToken();
+		String ore2=tokenizer2.nextToken();
+		String compito2=tokenizer2.nextToken();
+		
+		Log log2=new Log(nome2, cognome2, compito2, ore2);
+		return log2;
 	}
 	
 }
