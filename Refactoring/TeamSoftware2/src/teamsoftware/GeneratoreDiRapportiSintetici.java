@@ -20,10 +20,10 @@ public class GeneratoreDiRapportiSintetici {
 			String compito=tokenizer.nextToken();
 			String data=tokenizer.nextToken();
 			
-			boolean trovato = false;
+			Log log=new Log(nome, cognome, compito, ore);
 			
-			trovato = cercaRisultato(risultato, nome, cognome, ore, compito,
-					trovato);
+			boolean trovato = cercaRisultato(
+					risultato,log);
 			
 			if(!trovato){
 				risultato.add(nome+" "+cognome+" "+
@@ -34,8 +34,10 @@ public class GeneratoreDiRapportiSintetici {
 		return risultato;
 	}
 
-	private boolean cercaRisultato(ArrayList<String> risultato, String nome,
-			String cognome, String ore, String compito, boolean trovato) {
+	private boolean cercaRisultato(ArrayList<String> risultato, 
+			Log log) {
+
+		boolean trovato = false;
 		for (int i = 0; i < risultato.size(); i++) {
 			
 			StringTokenizer tokenizer2 =new StringTokenizer(risultato.get(i));
@@ -45,15 +47,15 @@ public class GeneratoreDiRapportiSintetici {
 			String ore2=tokenizer2.nextToken();
 			String compito2=tokenizer2.nextToken();
 			
-			if(nome.equalsIgnoreCase(nome2)){
-				if(cognome.equalsIgnoreCase(cognome2)){
-					if(compito.equalsIgnoreCase(compito2)){
+			if(log.getNome().equalsIgnoreCase(nome2)){
+				if(log.getCognome().equalsIgnoreCase(cognome2)){
+					if(log.getCompito().equalsIgnoreCase(compito2)){
 						trovato = true;
 						risultato.remove(i);
-						int sommaOre = Integer.parseInt(ore)+
+						int sommaOre = Integer.parseInt(log.getOre())+
 							Integer.parseInt(ore2);
-						risultato.add(nome+" "+cognome+" "+
-								sommaOre+" "+compito+" "+sommaOre);
+						risultato.add(log.getNome()+" "+log.getCognome()+" "+
+								sommaOre+" "+log.getCompito()+" "+sommaOre);
 						i=risultato.size();
 					}
 				}
