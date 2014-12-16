@@ -59,8 +59,7 @@ public class GeneratoreDiRapportiSintetici {
 					if(log.getCompito().equalsIgnoreCase(log2.getCompito())){
 						trovato = true;
 						risultato.remove(i);
-						int sommaOre = Integer.parseInt(log.getOre())+
-							Integer.parseInt(log2.getOre());
+						int sommaOre = log.getSommaOre(log2);
 						risultato.add(log.getNome()+" "+log.getCognome()+" "+
 								sommaOre+" "+log.getCompito()+" "+sommaOre);
 						i=risultato.size();
