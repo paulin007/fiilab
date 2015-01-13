@@ -15,31 +15,31 @@ public class GeneratoreDiRapportiSintetici {
 	public ArrayList<String> generaRapportSintetico(
 			ArrayList<String> rapportoCompleto){
 		
-		ArrayList<String> risultato=new ArrayList<String>();
+		ArrayList<Log> logCompleto = rapportoToLog(rapportoCompleto);
+
+		ArrayList<Log> risultato=new ArrayList<Log>();
 		
-		for (String rapporto : rapportoCompleto) {
-			
-			Log log = format.creaLogDaRapportoCompleto(rapporto);
+		for (Log log : logCompleto) {
 			
 			boolean trovato = cercaRisultato(
 					risultato,log);
 			
 			if(!trovato){
-				risultato.add(format.generaRapportoSinteticoDaLog(log));
+				risultato.add(log);
 			}
 		}
-		
-		return risultato;
+
+		return logToRapportoSintetico(risultato);
 	}
 
 
-	private boolean cercaRisultato(ArrayList<String> risultato, 
+	private boolean cercaRisultato(ArrayList<Log> risultato, 
 			Log log) {
 
 		boolean trovato = false;
 		for (int i = 0; i < risultato.size(); i++) {
 			
-			Log log2 = format.generaLogDaRapportoSintetico(risultato, i);
+			Log log2 = risultato.get(i);
 			
 			if(log.simili(log2)){
 				trovato = true;
@@ -47,11 +47,31 @@ public class GeneratoreDiRapportiSintetici {
 				int sommaOre = log.getSommaOre(log2);
 				Log logSomma=log.clone();
 				logSomma.setOre(""+sommaOre);
-				risultato.add(format.generaRapportoSinteticoDaLog(logSomma));
+				risultato.add(logSomma);
 				i=risultato.size();
 			}
 		}
 		return trovato;
 	}
+
+	private ArrayList<String> logToRapportoSintetico(ArrayList<Log> risultato) {
+		ArrayList<String> risultatoFormattato=new ArrayList<String>();
+
+		for (Log log : risultato) {
+			risultatoFormattato.
+				add(format.generaRapportoSinteticoDaLog(log));
+		}
+		return risultatoFormattato;
+	}
+
+
+	private ArrayList<Log> rapportoToLog(ArrayList<String> rapportoCompleto) {
+		ArrayList<Log> logCompleto=new ArrayList<Log>();
+		for (String rapporto : rapportoCompleto) {
+			logCompleto.add(format.creaLogDaRapportoCompleto(rapporto));
+		}
+		return logCompleto;
+	}
+
 	
 }
