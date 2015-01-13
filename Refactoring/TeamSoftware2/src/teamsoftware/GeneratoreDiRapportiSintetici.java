@@ -46,17 +46,6 @@ public class GeneratoreDiRapportiSintetici {
 		return log;
 	}
 	
-	public boolean simili(Log log,Log log2){
-		if(log.getNome().equalsIgnoreCase(log2.getNome())){
-			if(log.getCognome().equalsIgnoreCase(log2.getCognome())){
-				if(log.getCompito().equalsIgnoreCase(log2.getCompito())){
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
 	private boolean cercaRisultato(ArrayList<String> risultato, 
 			Log log) {
 
@@ -65,7 +54,7 @@ public class GeneratoreDiRapportiSintetici {
 			
 			Log log2 = generaLogDaRapportoSintetico(risultato, i);
 			
-			if(simili(log,log2)){
+			if(log.simili(log2)){
 				trovato = true;
 				risultato.remove(i);
 				int sommaOre = log.getSommaOre(log2);
