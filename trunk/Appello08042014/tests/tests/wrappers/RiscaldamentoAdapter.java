@@ -7,7 +7,7 @@ public class RiscaldamentoAdapter implements DispositivoPercentuale{
 
 	private static final float RAPPORTO_VALORI=0.01f;
 	
-	RiscaldamentoDiTest riscaldamento;
+	private RiscaldamentoDiTest riscaldamento;
 	
 	public RiscaldamentoAdapter(RiscaldamentoDiTest riscaldamento) {
 		super();
