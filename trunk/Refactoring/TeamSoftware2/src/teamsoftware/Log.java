@@ -52,6 +52,17 @@ public class Log {
 			Integer.parseInt(log2.getOre());
 		return sommaOre;
 	}
+
+	public boolean simili(Log log2){
+		if(getNome().equalsIgnoreCase(log2.getNome())){
+			if(getCognome().equalsIgnoreCase(log2.getCognome())){
+				if(getCompito().equalsIgnoreCase(log2.getCompito())){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	
 	
 }
