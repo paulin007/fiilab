@@ -6,6 +6,7 @@ import java.util.Collections;
 import org.junit.Test;
 
 import teamsoftware.GeneratoreDiRapportiSintetici;
+import teamsoftware.LogFormat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -34,7 +35,7 @@ public class TeamSoftwareTest {
 		);
 		
 		GeneratoreDiRapportiSintetici generatore=
-			new GeneratoreDiRapportiSintetici();
+			new GeneratoreDiRapportiSintetici(new LogFormat());
 		
 		ArrayList<String> risultato=generatore.
 			generaRapportSintetico(rapportoCompleto);

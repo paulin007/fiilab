@@ -63,6 +63,11 @@ public class Log {
 		}
 		return false;
 	}
+
+	public Log clone() {
+		return new Log(getNome(), getCognome(), 
+				getCompito(), getOre());
+	}
 	
 	
 }

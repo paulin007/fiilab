@@ -1,9 +1,16 @@
 package teamsoftware;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 public class GeneratoreDiRapportiSintetici {
+	
+	private ILogFormat format;
+	
+	public GeneratoreDiRapportiSintetici(ILogFormat format) {
+		super();
+		this.format = format;
+	}
+
 
 	public ArrayList<String> generaRapportSintetico(
 			ArrayList<String> rapportoCompleto){
@@ -12,70 +19,39 @@ public class GeneratoreDiRapportiSintetici {
 		
 		for (String rapporto : rapportoCompleto) {
 			
-			Log log = creaLogDaRapportoCompleto(rapporto);
+			Log log = format.creaLogDaRapportoCompleto(rapporto);
 			
 			boolean trovato = cercaRisultato(
 					risultato,log);
 			
 			if(!trovato){
-				risultato.add(generaRapportoSinteticoDaLog(log));
+				risultato.add(format.generaRapportoSinteticoDaLog(log));
 			}
 		}
 		
 		return risultato;
 	}
 
-	private String generaRapportoSinteticoDaLog(Log log) {
-		return log.getNome()+" "+
-				log.getCognome()+" "+
-				log.getOre()+" "+
-				log.getCompito()+" "+
-				log.getOre();
-	}
 
-	private Log creaLogDaRapportoCompleto(String rapporto) {
-		StringTokenizer tokenizer=new StringTokenizer(rapporto);
-		
-		String nome=tokenizer.nextToken();
-		String cognome=tokenizer.nextToken();
-		String ore=tokenizer.nextToken();
-		String compito=tokenizer.nextToken();
-		String data=tokenizer.nextToken();
-		
-		Log log=new Log(nome, cognome, compito, ore);
-		return log;
-	}
-	
 	private boolean cercaRisultato(ArrayList<String> risultato, 
 			Log log) {
 
 		boolean trovato = false;
 		for (int i = 0; i < risultato.size(); i++) {
 			
-			Log log2 = generaLogDaRapportoSintetico(risultato, i);
+			Log log2 = format.generaLogDaRapportoSintetico(risultato, i);
 			
 			if(log.simili(log2)){
 				trovato = true;
 				risultato.remove(i);
 				int sommaOre = log.getSommaOre(log2);
-				risultato.add(log.getNome()+" "+log.getCognome()+" "+
-						sommaOre+" "+log.getCompito()+" "+sommaOre);
+				Log logSomma=log.clone();
+				logSomma.setOre(""+sommaOre);
+				risultato.add(format.generaRapportoSinteticoDaLog(logSomma));
 				i=risultato.size();
 			}
 		}
 		return trovato;
-	}
-
-	private Log generaLogDaRapportoSintetico(ArrayList<String> risultato, int i) {
-		StringTokenizer tokenizer2 =new StringTokenizer(risultato.get(i));
-
-		String nome2=tokenizer2.nextToken();
-		String cognome2=tokenizer2.nextToken();
-		String ore2=tokenizer2.nextToken();
-		String compito2=tokenizer2.nextToken();
-		
-		Log log2=new Log(nome2, cognome2, compito2, ore2);
-		return log2;
 	}
 	
 }
