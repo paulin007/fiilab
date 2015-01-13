@@ -8,6 +8,7 @@ import java.util.Collections;
 import org.junit.Test;
 
 import tests.dispositivi.LuceDiTest;
+import tests.wrappers.LuceDiTestAdapter;
 import dispositivi.Centralina;
 
 public class Test0001 {
@@ -31,8 +32,10 @@ public class Test0001 {
 		);
 		
 		Centralina centralina=new Centralina();
-		centralina.registraLuce("Luce1", new LuceDiTest());
-		centralina.registraLuce("Luce2", new LuceDiTest());
+		centralina.registraLuce("Luce1", 
+				new LuceDiTestAdapter(new LuceDiTest()));
+		centralina.registraLuce("Luce2", 
+				new LuceDiTestAdapter(new LuceDiTest()));
 		for (int i=0;i<richieste.size();i++) {
 			String risposta=centralina.
 					getRisposta(richieste.get(i));

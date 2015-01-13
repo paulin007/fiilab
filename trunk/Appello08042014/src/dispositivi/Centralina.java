@@ -3,12 +3,10 @@ package dispositivi;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
-import tests.dispositivi.LuceDiTest;
-
 public class Centralina {
 	
-	private HashMap<String, LuceDiTest> luci=
-		new HashMap<String, LuceDiTest>();
+	private HashMap<String, Dispositivo> luci=
+		new HashMap<String, Dispositivo>();
 
 	public String getRisposta(String richiesta){
 		
@@ -16,18 +14,18 @@ public class Centralina {
 		
 		String nomeDispositivo=tokenizer.nextToken();
 		
-		LuceDiTest luce=luci.get(nomeDispositivo);
+		Dispositivo luce=luci.get(nomeDispositivo);
 		String comando=tokenizer.nextToken();
 		if(comando.equals("on")){
 			luce.accendi();
 		}else if(comando.equals("off")){
-			luce.spenta();
+			luce.spegni();
 		} 
 		
 		return nomeDispositivo+" done";
 	}
 	
-	public void registraLuce(String name,LuceDiTest luce){
+	public void registraLuce(String name,Dispositivo luce){
 		luci.put(name, luce);
 	}
 }
