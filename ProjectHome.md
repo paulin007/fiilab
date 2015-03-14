@@ -1,0 +1,1 @@
+This is the project of an Object Oriented Programming Lab. Course Lessons are supported by a wide set of examples and exercises. Such course is actually presented to II year students at the University of Pavia, Italy.
